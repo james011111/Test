@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; }
+        .card { background: white; padding: 20px; border-radius: 5px; width: 300px; margin: 20px auto; text-align: center; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; }
+        button { padding: 10px 15px; background: #5cb85c; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #4cae4c; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Student ID Card</h2>
+        <div id="studentInfo"></div>
+        <input type="text" id="newSection" placeholder="Update Section">
+        <button id="saveButton">Save</button>
+    </div>
+
+    <script>
+        const studentInfo = JSON.parse(localStorage.getItem('studentInfo'));
+        const studentInfoDiv = document.getElementById('studentInfo');
+
+        if (studentInfo) {
+            studentInfoDiv.innerHTML = `
+                <p><strong>Name:</strong> ${studentInfo.name}</p>
+                <p><strong>Section:</strong> ${studentInfo.section}</p>
+                <p><strong>Gmail:</strong> ${studentInfo.gmail}</p>
+            `;
+        }
+
+        document.getElementById('saveButton').addEventListener('click', function() {
+            const newSection = document.getElementById('newSection').value;
+            if (newSection) {
+                studentInfo.section = newSection;
+                localStorage.setItem('studentInfo', JSON.stringify(studentInfo));
+                studentInfoDiv.innerHTML = `
+                    <p><strong>Name:</strong> ${studentInfo.name}</p>
+                    <p><strong>Section:</strong> ${studentInfo.section}</p>
+                    <p><strong>Gmail:</strong> ${studentInfo.gmail}</p>
+                `;
+                document.getElementById('newSection').value = '';
+            }
+        });
+    </script>
+</body>
+</html>

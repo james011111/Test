@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Registration</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Prevent scrolling */
+        }
+        /* Background video styles */
+        .background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Send the video to the background */
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            width: 90%; /* Limit width to make it smaller */
+            max-width: 400px; /* Set a maximum width */
+            z-index: 1; /* Keep the container in front of the video */
+            position: relative; /* Needed for z-index */
+            margin: auto; /* Center the container */
+            top: 50%; /* Center vertically */
+            transform: translateY(-50%); /* Adjust for center alignment */
+        }
+        h2 {
+            text-align: center;
+            font-size: 28px; /* Size of the title */
+            animation: slideIn 1s ease-in; /* Animation for title */
+            color: #5cb85c; /* Green color for title */
+            margin-bottom: 20px; /* Space below the title */
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s; /* Smooth transition */
+        }
+        input:focus {
+            border-color: #5cb85c; /* Change border color on focus */
+            outline: none; /* Remove outline */
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s; /* Animation on hover */
+        }
+        button:hover {
+            background-color: #4cae4c;
+            transform: scale(1.05); /* Slightly enlarge button on hover */
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop class="background-video">
+        <source src="path/to/your/sky-video.mp4" type="video/mp4"> <!-- Palitan ang path sa iyong video file -->
+        Your browser does not support HTML5 video.
+    </video>
+    <div class="container">
+        <h2>Teacher Registration</h2>
+        <input type="text" id="teacher-name" placeholder="Teacher Name" required>
+        <input type="text" id="teacher-subject" placeholder="Subject" required>
+        <input type="email" id="teacher-gmail" placeholder="Gmail" required>
+        <button onclick="registerTeacher()">Register</button>
+    </div>
+
+    <script>
+        function registerTeacher() {
+            const teacherName = document.getElementById('teacher-name').value;
+            const teacherSubject = document.getElementById('teacher-subject').value;
+            const teacherGmail = document.getElementById('teacher-gmail').value;
+
+            // Redirect to welcome.html with query parameters
+            window.location.href = `welcome.html?teacherName=${encodeURIComponent(teacherName)}&teacherSubject=${encodeURIComponent(teacherSubject)}`;
+        }
+    </script>
+</body>
+</html>

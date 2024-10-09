@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to School Portal</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            animation: backgroundAnimation 15s infinite alternate; /* Background animation */
+        }
+        @keyframes backgroundAnimation {
+            0% { background-color: #87CEEB; }
+            50% { background-color: #B0E0E6; }
+            100% { background-color: #A0D6E1; }
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            z-index: 1;
+        }
+        h1 {
+            margin-bottom: 30px;
+            font-size: 48px;
+            color: #5cb85c;
+            animation: fadeIn 2s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        button {
+            padding: 15px;
+            background: #5cb85c;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+            margin: 10px 0;
+            width: 90%;
+        }
+        button:hover {
+            background: #4cae4c;
+            transform: scale(1.05);
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        .school-info {
+            font-size: 16px;
+            color: #333;
+            margin-top: 10px;
+        }
+        .logo {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="path/to/your/school-logo.png" alt="School Logo" class="logo"> <!-- Replace with your logo path -->
+        <h1>Welcome to the School Portal</h1>
+        <div class="school-info">Section: <strong id="student-section">Section A</strong></div> <!-- Default section -->
+        <div class="school-info">Adviser: <strong id="adviser-name">Mr. Smith</strong></div> <!-- Default adviser -->
+        <button onclick="location.href='subjectstudents.html'">Lessons</button> <!-- Updated link -->
+        <button onclick="location.href='student_information.html'">Student Information</button>
+        <div class="footer">
+            <div class="school-info">School Name: XYZ School</div>
+            <div class="school-info">Created by: Your Name</div>
+            <div class="school-info">Time: <span id="current-time"></span></div>
+            <div class="school-info">© 2024 School Name. All rights reserved.</div>
+        </div>
+    </div>
+
+    <script>
+        // Function to display the current time
+        function updateTime() {
+            const now = new Date();
+            const options = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const timeString = now.toLocaleTimeString([], options);
+            document.getElementById('current-time').textContent = timeString;
+        }
+
+        // Function to get query parameters from the URL
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                section: params.get('section'),
+                adviser: params.get('adviser')
+            };
+        }
+
+        // Function to set section and adviser based on student's input
+        function setStudentInfo(section, adviser) {
+            document.getElementById('student-section').textContent = section;
+            document.getElementById('adviser-name').textContent = adviser;
+        }
+
+        // Get parameters and set student info
+        const { section, adviser } = getQueryParams();
+        setStudentInfo(section || "Section A", adviser || "Mr. Smith"); // Default values if no params
+
+        // Update time every second
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial call to display the time immediately
+    </script>
+</body>
+</html>

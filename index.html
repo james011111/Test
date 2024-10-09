@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Registration Portal</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Prevent scrolling */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* Background video styles */
+        .background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Send the video to the background */
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            width: 90%; /* Limit width to make it smaller */
+            max-width: 600px; /* Set a maximum width */
+            z-index: 1; /* Keep the container in front of the video */
+            position: relative; /* Needed for z-index */
+        }
+        h2 {
+            text-align: center;
+            font-size: 28px; /* Size of the title */
+            animation: slideIn 1s ease-in; /* Animation for title */
+            color: #5cb85c; /* Green color for title */
+            margin-bottom: 20px; /* Space below the title */
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s; /* Smooth transition */
+        }
+        input:focus {
+            border-color: #5cb85c; /* Change border color on focus */
+            outline: none; /* Remove outline */
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s; /* Animation on hover */
+        }
+        button:hover {
+            background-color: #4cae4c;
+            transform: scale(1.05); /* Slightly enlarge button on hover */
+        }
+        .registration-section {
+            margin-bottom: 40px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 24px; /* Smaller title font on small screens */
+            }
+            .container {
+                padding: 10px; /* Less padding for small screens */
+            }
+            input {
+                padding: 8px; /* Smaller padding for inputs on small screens */
+            }
+            button {
+                padding: 10px; /* Smaller padding for buttons on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop class="background-video">
+        <source src="sky.mp4" type="video/mp4"> <!-- Update the path to your video file -->
+        Your browser does not support HTML5 video.
+    </video>
+    <div class="container">
+        <div class="registration-section">
+            <h2>Teacher Registration</h2>
+            <input type="text" id="teacher-name" placeholder="Teacher Name" required>
+            <input type="text" id="teacher-subject" placeholder="Subject" required>
+            <input type="email" id="teacher-gmail" placeholder="Gmail" required>
+            <button onclick="registerTeacher()">Register Teacher</button>
+        </div>
+
+        <div class="registration-section">
+            <h2>Student Registration</h2>
+            <input type="text" id="student-name" placeholder="Student Name" required>
+            <input type="text" id="student-section" placeholder="Section" required>
+            <input type="email" id="student-gmail" placeholder="Gmail" required>
+            <button onclick="registerStudent()">Register Student</button>
+        </div>
+    </div>
+
+    <script>
+        function registerTeacher() {
+            const teacherName = document.getElementById('teacher-name').value;
+            const teacherSubject = document.getElementById('teacher-subject').value;
+            const teacherGmail = document.getElementById('teacher-gmail').value;
+
+            // Redirect to dashboard.html with query parameters for teacher
+            window.location.href = `dashboard.html?teacherName=${encodeURIComponent(teacherName)}&teacherSubject=${encodeURIComponent(teacherSubject)}`;
+        }
+
+        function registerStudent() {
+            const studentName = document.getElementById('student-name').value;
+            const studentSection = document.getElementById('student-section').value;
+            const studentGmail = document.getElementById('student-gmail').value;
+
+            // Redirect to welcome.html with query parameters for student
+            window.location.href = `welcome.html?studentName=${encodeURIComponent(studentName)}&studentSection=${encodeURIComponent(studentSection)}`;
+        }
+    </script>
+</body>
+</html>
